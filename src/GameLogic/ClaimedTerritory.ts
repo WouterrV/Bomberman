@@ -44,7 +44,7 @@ export class ClaimedTerritory {
             let otherPos = addCoord(nonFriendlyTilesAroundPos[i], pos)
             if (!this.isVisited(otherPos)) {
                 // -4 stands for netto 4 inward corers, this a closed territory
-                if (this.cornersTakenInRoundTrip(pos, otherPos, id) == -4) {
+                if (this.cornersTakenInRoundTrip(pos, otherPos, id) === -4) {
                     fillingSeeds.push(otherPos)
                     break;
                 }
@@ -91,12 +91,12 @@ export class ClaimedTerritory {
         let ownTilePlusMoveDir = addCoord(freePosPlusMoveDir, scanDirection.edgeDirection)
         let nextFreeTileId = this.checkTile(freePosPlusMoveDir)
         let nextOwnTileId  = this.checkTile(ownTilePlusMoveDir)
-        if (nextFreeTileId == id) {
+        if (nextFreeTileId === id) {
             // inner corner so stop
             scanDirection.innerTurn()
             return new CornerInfo(-1, pos, scanDirection)
 
-        } else if (nextOwnTileId == id) {
+        } else if (nextOwnTileId === id) {
             // path in scanDirection is free, so move forward
             return this.scanAlongSide(freePosPlusMoveDir, scanDirection, id)
 
@@ -121,7 +121,7 @@ export class ClaimedTerritory {
 
                 // to make TS happy (unnecessary check, since unexpanded.length > 0)
                 let tempTile = unexpanded.pop()
-                if (tempTile == undefined) tempTile = {x:0, y:0}
+                if (tempTile === undefined) tempTile = {x:0, y:0}
                 // 
                 let tile:Coord = tempTile
 
@@ -136,7 +136,7 @@ export class ClaimedTerritory {
                 })
             }
 
-            if (iterations == 1000)
+            if (iterations === 1000)
                 logError("fillClosedTerritory infinite loop: " + id + ", x: " + pos.x + ", y: " + pos.y, this)
         } catch (e) {
             // catch out of bounds to prevent logic error that could create a infinite loop
