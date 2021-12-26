@@ -77,7 +77,7 @@ export class BombAndItemLogic {
             this.newFireDictionary[hashCoord(pos)] = pos
             this.bombManager.chainReaction(pos)
 
-            if (this.collisionMap.getCoordValue(pos) == 1) {
+            if (this.collisionMap.getCoordValue(pos) === 1) {
                 this.removeCrate(pos)
             }
         })
@@ -99,7 +99,7 @@ export class BombAndItemLogic {
 
     handleBombFire() {
         forAll(this.newFireDictionary, (pos:Coord) => {
-            if (pos.x != undefined && pos.y != undefined) {
+            if (pos.x !== undefined && pos.y !== undefined) {
                 this.explosionManager.addExplosion(pos)
                 
                 // remove bomb fire 
@@ -113,7 +113,7 @@ export class BombAndItemLogic {
     }
 
     scanLine(accumulator:Coord[], pos:Coord, direction:Coord, distance:number) :Coord[] {
-        if (distance == 0)
+        if (distance === 0)
             return accumulator
 
         let tileId = this.collisionMap.getCoordValue(pos)
