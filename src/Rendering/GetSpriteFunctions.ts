@@ -145,7 +145,7 @@ export function getPlayerSprite(column:number, row:number) : Sprite {
 
 export function getExplosion() : AnimatedSprite {
     
-    const explosionTextures = [];
+    const explosionTextures:Texture[] = [];
     for (let i = 0; i < 20; i++) {
         const texture = Texture.from(`Explosion_Sequence_A ${i + 1}.png`);
         explosionTextures.push(texture);
