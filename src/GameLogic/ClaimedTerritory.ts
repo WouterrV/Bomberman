@@ -39,7 +39,7 @@ export class ClaimedTerritory {
         // IMPORTANT: spots in 'visited' will be set to 'currentlyVisitedNum' when visited.
         // using this var we don't have to clear the collisionMap inbetween outline-scans
         this.currentlyVisitedNum++
-        let fillingSeeds = []
+        let fillingSeeds:Coord[] = []
         for(var i = 0; i < nonFriendlyTilesAroundPos.length; i++) { 
             let otherPos = addCoord(nonFriendlyTilesAroundPos[i], pos)
             if (!this.isVisited(otherPos)) {
@@ -61,7 +61,7 @@ export class ClaimedTerritory {
         return claimedTiles
     }
 
-    cornersTakenInRoundTrip(ownTile:Coord, otherTile:Coord, id:number) {
+    cornersTakenInRoundTrip(ownTile:Coord, otherTile:Coord, id:number):number {
         let cornersTaken = 0
 
         let scanDirection = getStartingDirection(ownTile, otherTile)
@@ -254,11 +254,11 @@ class ScanAroundTeritorryDirection {
     }
 }
 
-function coordClockwise90D(coord:Coord) {
+function coordClockwise90D(coord:Coord):Coord {
     return {x: coord.y, y: -coord.x}
 }
 
-function coordAntiClockwise90D(coord:Coord) {
+function coordAntiClockwise90D(coord:Coord) : Coord{
     return {x: -coord.y, y: coord.x}
 }
 
